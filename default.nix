@@ -227,7 +227,7 @@ rec {
     sha256s = {
       x86_64-linux = "1pcjzwsgdwfh0amn21kizf95psxw4zyxb5xrw925xgskxy4lp0ds";
       i686-linux = "01nfzx3vm2n5hdv219jajqyyhp7ym3hj5n4wjgcka6yqlsjr62b1";
-      x86_64-darwin = "17qi7lp3pz5fhnas8rwy3ss24k03lanznbf2a1k13c7yqp4zpz9p";
+      x86_64-darwin = "sha256-fxSVkOs9c3itQPMd3h38B5at5fzGpHHBH96U/AY2UO0=";
     };
   };
 
