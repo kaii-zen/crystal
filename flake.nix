@@ -27,6 +27,8 @@
       };
 
       defaultPackage = legacyPackages.crystal;
+
+      hydraJobs = packages;
     });
 
 }
