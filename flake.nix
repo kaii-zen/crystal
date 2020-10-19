@@ -9,6 +9,11 @@
         inherit (final.callPackages ./default.nix {
           inherit (final.llvmPackages_10) stdenv clang llvm;
         })
+          crystal_0_31
+          crystal_0_32
+          crystal_0_33
+          crystal_0_34
+          crystal_0_35
           crystal
           crystal2nix;
       };
@@ -19,7 +24,14 @@
       };
 
       packages = {
-        inherit (legacyPackages) crystal crystal2nix;
+        inherit (legacyPackages)
+          crystal_0_31
+          crystal_0_32
+          crystal_0_33
+          crystal_0_34
+          crystal_0_35
+          crystal
+          crystal2nix;
       };
 
       defaultPackage = legacyPackages.crystal;
