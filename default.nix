@@ -263,4 +263,6 @@ rec {
   crystal = crystal_0_35;
 
   crystal2nix = callPackage ./crystal2nix.nix { };
+
+  defaultPackage = crystal;
 }
