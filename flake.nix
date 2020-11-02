@@ -10,7 +10,6 @@
           inherit (final.llvmPackages_10) stdenv clang llvm;
         })
           crystal_0_31
-          crystal_0_32
           crystal_0_33
           crystal_0_34
           crystal_0_35
@@ -26,7 +25,6 @@
       packages = {
         inherit (legacyPackages)
           crystal_0_31
-          crystal_0_32
           crystal_0_33
           crystal_0_34
           crystal_0_35
