@@ -8,7 +8,7 @@
       name = "crystal-flake";
       systems = [ "x86_64-darwin" "x86_64-linux" ];
       overlay = final: prev: {
-        crystal-flake = final.callPackages ./default.nix {
+        crystal-flake = final.callPackages ./pkgs {
           inherit (final.llvmPackages_10) stdenv clang llvm;
         };
       };
