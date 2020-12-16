@@ -92,10 +92,6 @@ let
 
         ln -sf spec/compiler spec/std
 
-        # Dirty fix for when no sandboxing is enabled
-        # rm -rf /tmp/crystal
-        # mkdir -p /tmp/crystal
-
         substituteInPlace spec/std/file_spec.cr \
           --replace '/bin/ls' '${coreutils}/bin/ls' \
           --replace '/usr/share' "$TMPDIR/crystal" \
