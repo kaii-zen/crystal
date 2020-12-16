@@ -93,20 +93,20 @@ let
         ln -sf spec/compiler spec/std
 
         # Dirty fix for when no sandboxing is enabled
-        rm -rf /tmp/crystal
-        mkdir -p /tmp/crystal
+        # rm -rf /tmp/crystal
+        # mkdir -p /tmp/crystal
 
         substituteInPlace spec/std/file_spec.cr \
           --replace '/bin/ls' '${coreutils}/bin/ls' \
-          --replace '/usr/share' '/tmp/crystal' \
-          --replace '/usr' '/tmp'
+          --replace '/usr/share' "$TMPDIR/crystal" \
+          --replace '/usr' "$TMPDIR"
 
         substituteInPlace spec/std/process_spec.cr \
           --replace '/bin/cat' '${coreutils}/bin/cat' \
           --replace '/bin/ls' '${coreutils}/bin/ls' \
           --replace '/usr/bin/env' '${coreutils}/bin/env' \
           --replace '"env"' '"${coreutils}/bin/env"' \
-          --replace '"/usr"' '"/tmp"'
+          --replace '"/usr"' "\"$TMPDIR\""
 
         substituteInPlace spec/std/socket/tcp_server_spec.cr \
           --replace '{% if flag?(:gnu) %}"listen: "{% else %}"bind: "{% end %}' '"bind: "'
@@ -191,7 +191,7 @@ let
       checkTarget = "spec";
 
       preCheck = ''
-        export HOME=/tmp
+        export HOME=$TMPDIR
         mkdir -p $HOME/test
 
         export LIBRARY_PATH=${lib.makeLibraryPath checkInputs}:$LIBRARY_PATH
@@ -263,6 +263,4 @@ rec {
   crystal = crystal_0_35;
 
   crystal2nix = callPackage ./crystal2nix.nix { inherit crystal; };
-
-  # defaultPackage = crystal;
 }
