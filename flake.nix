@@ -1,25 +1,38 @@
 {
   description = "The Crystal Programming Language";
 
-  inputs.utils.url = "github:numtide/flake-utils";
+  inputs.utils.url = "github:kreisys/flake-utils";
 
   outputs = { self, utils, nixpkgs }:
-    let
-      name = "crystal-flake";
-      systems = [ "x86_64-darwin" "x86_64-linux" ];
-      overlay = final: prev: {
-        crystal-flake = final.callPackages ./pkgs {
-          inherit (final.llvmPackages_10) stdenv clang llvm;
-        };
-      };
-
-      simpleFlake = utils.lib.simpleFlake {
-        inherit name systems overlay self nixpkgs;
-      };
-    in
-    simpleFlake // {
-      inherit overlay;
-
-      hydraJobs = self.packages;
+  utils.lib.simpleFlake {
+    inherit nixpkgs;
+    name = "crystal";
+    overlay = final: prev: {
+      inherit (final.callPackages ./pkgs {
+        inherit (final.llvmPackages_10) stdenv clang llvm;
+      })
+      crystal
+      crystal2nix
+      binaryCrystal_0_31
+      binaryCrystal_0_35
+      crystal_0_31
+      crystal_0_33
+      crystal_0_34
+      crystal_0_35
+      ;
     };
+
+    packages = {
+        crystal
+      , crystal2nix
+      , binaryCrystal_0_31
+      , binaryCrystal_0_35
+      , crystal_0_31
+      , crystal_0_33
+      , crystal_0_34
+      , crystal_0_35
+    }@packages: packages // {
+      defaultPackage = crystal;
+    };
+  };
 }

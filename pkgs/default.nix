@@ -262,7 +262,7 @@ rec {
 
   crystal = crystal_0_35;
 
-  crystal2nix = callPackage ./crystal2nix.nix { };
+  crystal2nix = callPackage ./crystal2nix.nix { inherit crystal; };
 
-  defaultPackage = crystal;
+  # defaultPackage = crystal;
 }
