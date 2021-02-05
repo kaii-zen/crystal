@@ -69,7 +69,7 @@ let
     libxml2
     openssl
   ] ++ extraBuildInputs
-  ++ stdenv.lib.optionals stdenv.isDarwin [ libiconv ];
+  ++ lib.optionals stdenv.isDarwin [ libiconv ];
 
 
   generic = ({ version, sha256, binary, doCheck ? true, extraBuildInputs ? [ ] }:
