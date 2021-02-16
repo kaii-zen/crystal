@@ -6,7 +6,6 @@
   outputs = { self, utils, nixpkgs }:
   utils.lib.simpleFlake {
     inherit nixpkgs;
-    name = "crystal";
     systems = [ "x86_64-linux" "x86_64-darwin" ];
     overlay = final: prev: {
       inherit (final.callPackages ./pkgs {
